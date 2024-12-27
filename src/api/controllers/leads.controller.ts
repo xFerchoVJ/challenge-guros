@@ -1,22 +1,36 @@
 import { Request, Response } from "express";
 import prismadb from "../../lib/prismadb";
 import { Status } from "@prisma/client";
+import { validationResult } from "express-validator";
 
-beforeEach(() => {
-  jest.clearAllMocks();
-});
+const validStatuses: Status[] = [
+  "registered",
+  "quotation_unfinished",
+  "emission_unfinished",
+  "emission_succeeded",
+  "recovery_lead",
+];
 
 const createLead = async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const {
       phoneNumber,
       email,
       fullName,
+      status,
       postalCode,
       birthDate,
       gender,
       vehicle,
     } = req.body;
+
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ error: "Status inválido" });
+    }
 
     const leadExist = await prismadb.lead.findFirst({
       where: { phoneNumber },
@@ -36,7 +50,7 @@ const createLead = async (req: Request, res: Response) => {
         postalCode,
         birthDate: new Date(birthDate),
         gender,
-        status: "registered",
+        status,
         Vehicle: {
           create: vehicle,
         },
@@ -79,13 +93,10 @@ const updateLeadStatus = async (req: Request, res: Response) => {
     const { identifier } = req.params;
     const { status } = req.body;
 
-    const validStatuses: Status[] = [
-      "registered",
-      "quotation_unfinished",
-      "emission_unfinished",
-      "emission_succeeded",
-      "recovery_lead",
-    ];
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
     if (!validStatuses.includes(status)) {
       return res.status(400).json({ error: "Status inválido" });
