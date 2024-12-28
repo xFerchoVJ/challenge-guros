@@ -1,59 +1,45 @@
-# Express API Starter with Typescript
+# Proyecto API con Docker, Prisma y Jest para el reto de Guros
 
-How to use this template:
+Este proyecto es una API que usa Docker para contenerizar la aplicación, Prisma para interactuar con una base de datos PostgreSQL, y Jest para las pruebas. A continuación, se encuentran las instrucciones para configurar y ejecutar el proyecto, así como para ejecutar las pruebas.
 
-```sh
-npx create-express-api --typescript --directory my-api-name
+## Requisitos
+
+Asegúrate de tener instalados los siguientes programas en tu sistema:
+
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Node.js](https://nodejs.org/) (para desarrollo y pruebas locales si no usas contenedores)
+- [npm](https://www.npmjs.com/) (gestor de paquetes de Node.js)
+
+## Configuración del proyecto
+
+### 1. Clonar el repositorio
+
+Clona este repositorio en tu máquina local:
+
+```bash
+git clone https://github.com/xFerchoVJ/challenge-guros/tree/master
+```
+```bash
+cd challenge-guros
 ```
 
-Includes API Server utilities:
+### 2. Crear el archivo .env
 
-* [morgan](https://www.npmjs.com/package/morgan)
-  * HTTP request logger middleware for node.js
-* [helmet](https://www.npmjs.com/package/helmet)
-  * Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
-* [dotenv](https://www.npmjs.com/package/dotenv)
-  * Dotenv is a zero-dependency module that loads environment variables from a `.env` file into `process.env`
-* [cors](https://www.npmjs.com/package/cors)
-  * CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+Copia el archivo .env.example a un nuevo archivo .env:
 
-Development utilities:
-
-* [typescript](https://www.npmjs.com/package/typescript)
-  * TypeScript is a language for application-scale JavaScript.
-* [ts-node](https://www.npmjs.com/package/ts-node)
-  * TypeScript execution and REPL for node.js, with source map and native ESM support.
-* [nodemon](https://www.npmjs.com/package/nodemon)
-  * nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
-* [eslint](https://www.npmjs.com/package/eslint)
-  * ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
-* [typescript-eslint](https://typescript-eslint.io/)
-  * Tooling which enables ESLint to support TypeScript.
-* [jest](https://www.npmjs.com/package/jest)
-  * Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
-* [supertest](https://www.npmjs.com/package/supertest)
-  * HTTP assertions made easy via superagent.
-
-## Setup
-
-```
-npm install
+```bash
+cp .env.example .env
 ```
 
-## Lint
+Edita el archivo .env con los valores correctos para tu entorno. Asegúrate de configurar correctamente las credenciales de la base de datos y otros parámetros de entorno
 
-```
-npm run lint
-```
+### 3. Construir y ejecutar los contenedores
+Asegúrate de que Docker y Docker Compose estén instalados y corriendo en tu máquina. Luego, ejecuta el siguiente comando para construir las imágenes y levantar los contenedores:
 
-## Test
-
-```
-npm run test
+```bash
+docker-compose up -d --build
 ```
 
-## Development
-
-```
-npm run dev
-```
+### 4. Accede a la API
+http://localhost:{puerto}/api/v1

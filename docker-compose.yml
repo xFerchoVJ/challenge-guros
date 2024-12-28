@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   db:
-    image: postgres
+    image: postgres:alpine
     restart: always
-    env_file: ./.env
+    env_file: .env
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -18,15 +18,16 @@ services:
     depends_on:
       - db
     build:
-      context: ./
+      context: ./ # Asume que el Dockerfile está en la raíz del proyecto
     restart: always
-    env_file: ./.env
+    env_file: .env
     ports:
       - ${API_PORT}:3000
     volumes:
       - ./:/usr/src/app
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DB_PORT}/${POSTGRES_DB}
+    command: sh -c "npx prisma migrate deploy && npm start"
 
 volumes:
   db-data:
