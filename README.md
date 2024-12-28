@@ -29,7 +29,7 @@ cd challenge-guros
 Copia el archivo .env.sample a un nuevo archivo .env:
 
 ```bash
-cp .env.example .env
+cp .env.sample .env
 ```
 
 Edita el archivo .env con los valores correctos para tu entorno. Asegúrate de configurar correctamente las credenciales de la base de datos y otros parámetros de entorno
