@@ -18,7 +18,7 @@ Asegúrate de tener instalados los siguientes programas en tu sistema:
 Clona este repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/xFerchoVJ/challenge-guros/tree/master
+https://github.com/xFerchoVJ/challenge-guros
 ```
 ```bash
 cd challenge-guros
