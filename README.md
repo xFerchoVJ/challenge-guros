@@ -26,7 +26,7 @@ cd challenge-guros
 
 ### 2. Crear el archivo .env
 
-Copia el archivo .env.example a un nuevo archivo .env:
+Copia el archivo .env.sample a un nuevo archivo .env:
 
 ```bash
 cp .env.example .env
