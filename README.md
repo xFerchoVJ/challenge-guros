@@ -43,3 +43,11 @@ docker-compose up -d --build
 
 ### 4. Accede a la API
 http://localhost:{puerto}/api/v1
+
+
+### Pruebas
+Ejecutar pruebas con Jest
+```bash
+docker-compose exec api npm test
+```
+
