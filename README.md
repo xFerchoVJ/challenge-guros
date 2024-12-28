@@ -50,4 +50,21 @@ Ejecutar pruebas con Jest
 ```bash
 docker-compose exec api npm test
 ```
+### ENDPOINTS
+# GET
+● Obtener listado de leads por status.
+/api/v1/leads?status=
+# POST
+● Registrar un lead
+/api/v1/leads
+# PATCH
+● Actualizar el status de un lead.
+/leads/:identifier
+Example:
+/v1/leads/lead@example.com
+# GET
+● Obtener detalle de un lead por número de teléfono o correo.
+/leads/:identifier
+/leads/lead@example.com
+
 
